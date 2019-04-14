@@ -1,5 +1,6 @@
 import { ServerService } from './server.service';
 import { Component } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,16 @@ export class AppComponent {
       capacity: 50,
       id: this.generateId()
     });
+  }
+
+  onGetServer(){
+    this.serverService.getServers()
+    .subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error)=>console.log(error)
+    );
   }
   onSave() {
     this.serverService.storeServers(this.servers).subscribe(
