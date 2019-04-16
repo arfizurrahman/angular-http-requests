@@ -8,6 +8,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+ appName= this.serverService.getAppName();
   servers = [
     {
       name: 'Testserver',
@@ -33,9 +34,7 @@ export class AppComponent {
   onGetServer(){
     this.serverService.getServers()
     .subscribe(
-      (response) => {
-        console.log(response);
-      },
+      (servers: any[]) => this.servers = servers,
       (error)=>console.log(error)
     );
   }
